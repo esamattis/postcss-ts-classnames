@@ -40,6 +40,21 @@ test("single class", async () => {
     expect(collector.getClassNames()).toEqual(["foo"]);
 });
 
+test(":hover", async () => {
+    const collector = new ClassNameCollector({});
+
+    await run(
+        collector,
+        css`
+            .foo:hover {
+                color: red;
+            }
+        `,
+    );
+
+    expect(collector.getClassNames()).toEqual(["foo"]);
+});
+
 test("single two classes", async () => {
     const collector = new ClassNameCollector({});
 
