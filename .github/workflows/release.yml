@@ -1,0 +1,14 @@
+on:
+    release:
+        types: [published]
+
+jobs:
+    prerelease:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: Make stable release to npm
+              uses: epeli/npm-release@v1
+              with:
+                  type: stable
+                  token: ${{ secrets.NPM_TOKEN }}
