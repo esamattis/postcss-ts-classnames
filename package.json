@@ -1,0 +1,25 @@
+{
+    "name": "ts-classnames",
+    "version": "0.1.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc --project tsconfig.build.json",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jest": "^24.0.21",
+        "@types/node": "^12.12.5",
+        "jest": "^24.9.0",
+        "prettier": "^1.18.2",
+        "ts-jest": "^24.1.0",
+        "typescript": "^3.6.4"
+    },
+    "dependencies": {
+        "classnames": "^2.2.6",
+        "postcss": "^7.0.21",
+        "postcss-selector-parser": "^6.0.2"
+    }
+}

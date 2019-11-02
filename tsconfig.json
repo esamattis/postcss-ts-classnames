@@ -1,0 +1,12 @@
+{
+    "include": ["src", "__tests__"],
+    "compilerOptions": {
+        "module": "commonjs",
+        "noEmit": true,
+        "lib": ["esnext", "dom"],
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "esModuleInterop": true
+    }
+}
