@@ -5,6 +5,7 @@
         "target": "es5",
         "sourceMap": true,
         "noEmit": false,
+        "declaration": true,
         "outDir": "./dist",
         "rootDir": "src"
     }
