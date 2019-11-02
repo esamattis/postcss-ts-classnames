@@ -20,7 +20,7 @@ Ex. for css
 }
 ```
 
-You'll get
+you'll get
 
 ```ts
 type ClassNames = "button" | "button-danger";
@@ -34,7 +34,7 @@ function cn(...args: ClassNames[]) {
 }
 ```
 
-And have your editor autocomplete and validate the class names:
+and have your editor autocomplete and validate the class names:
 
 > TODO add gifs
 
