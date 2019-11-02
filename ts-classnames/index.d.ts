@@ -1,5 +1,3 @@
-const originalClassNames = require("classnames");
-
 type ClassNameRecord<T extends string> = Partial<
     Record<T, boolean | undefined | null>
 >;
@@ -16,8 +14,9 @@ export interface ClassNamesFunction<T extends string> {
     (...args: Variants<T>[]): string;
 }
 
-export function createClassNames<T extends string>() {
-    return function classNames(...args: Variants<T>[]): string {
-        return originalClassNames(...args);
-    };
-}
+/**
+ * Using user defined ClassNames type
+ */
+export const cn: ClassNamesFunction<ClassNames>;
+export const classNames: ClassNamesFunction<ClassNames>;
+export default cn;

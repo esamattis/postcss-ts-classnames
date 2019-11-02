@@ -1,19 +1,18 @@
 {
-    "name": "ts-classnames",
+    "name": "postcss-ts-classnames",
     "version": "0.1.0",
     "description": "",
-    "main": "dist/index.js",
+    "main": "dist/plugin.js",
     "scripts": {
         "jest": "jest",
         "tsc": "tsc",
-        "build": "rm -rf dist && tsc --project tsconfig.build.json && cp entry/* dist/",
+        "build": "rm -rf dist && tsc --project tsconfig.build.json",
         "watch": "tsc --project tsconfig.build.json --watch",
         "test": "npm run tsc && npm run jest",
         "prepublishOnly": "npm test && npm run build"
     },
     "files": [
-        "dist",
-        "postcss.js"
+        "dist"
     ],
     "author": "",
     "license": "ISC",
@@ -28,7 +27,6 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
-        "classnames": "^2.2.6",
         "lodash.debounce": "^4.0.8",
         "postcss": "^7.0.21",
         "postcss-selector-parser": "^6.0.2"

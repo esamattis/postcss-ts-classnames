@@ -2,8 +2,8 @@ import postcss from "postcss";
 import PathUtils from "path";
 import { sh } from "sh-thunk";
 import { promises as fs } from "fs";
-import { createPlugin } from "../src/postcss/plugin";
-import { ClassNameCollector } from "../src/postcss/class-name-collector";
+import { createPlugin } from "../src/plugin";
+import { ClassNameCollector } from "../src/class-name-collector";
 
 function css(literals: TemplateStringsArray, ...placeholders: string[]) {
     let result = "";
