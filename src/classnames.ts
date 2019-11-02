@@ -1,6 +1,8 @@
 const originalClassNames = require("classnames");
 
-type ClassNameRecord<T extends string> = Record<T, boolean | undefined | null>;
+type ClassNameRecord<T extends string> = Partial<
+    Record<T, boolean | undefined | null>
+>;
 
 type Variants<T extends string> =
     | T
