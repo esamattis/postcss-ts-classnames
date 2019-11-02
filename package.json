@@ -1,8 +1,13 @@
 {
     "name": "postcss-ts-classnames",
     "version": "0.1.0",
-    "description": "",
+    "description": "PostCSS plugin to generate TypeScript types from _your_ CSS class names",
     "main": "dist/plugin.js",
+    "homepage": "https://github.com/epeli/postcss-ts-classnames",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/epeli/postcss-ts-classnames.git"
+    },
     "scripts": {
         "jest": "jest",
         "tsc": "tsc",

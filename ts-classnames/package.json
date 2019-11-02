@@ -1,8 +1,13 @@
 {
     "name": "ts-classnames",
     "version": "0.1.0",
-    "description": "",
+    "description": "Typed classnames module",
     "main": "index.js",
+    "homepage": "https://github.com/epeli/postcss-ts-classnames",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/epeli/postcss-ts-classnames.git"
+    },
     "files": [
         "index.js",
         "index.d.ts"

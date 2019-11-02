@@ -1,6 +1,6 @@
 # postcss-ts-classnames
 
-[PostCSS][] plugin to generate TypeScript types from your CSS files.
+[PostCSS][] plugin to generate TypeScript types from **your** CSS class names.
 
 [postcss]: https://postcss.org/
 
