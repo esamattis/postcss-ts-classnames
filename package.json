@@ -7,6 +7,7 @@
         "jest": "jest",
         "tsc": "tsc",
         "build": "rm -rf dist && tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "files": [
@@ -24,7 +25,9 @@
         "typescript": "^3.6.4"
     },
     "dependencies": {
+        "@types/lodash.debounce": "^4.0.6",
         "classnames": "^2.2.6",
+        "lodash.debounce": "^4.0.8",
         "postcss": "^7.0.21",
         "postcss-selector-parser": "^6.0.2"
     }
