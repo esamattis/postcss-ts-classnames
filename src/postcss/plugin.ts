@@ -22,7 +22,15 @@ function getSingleton<T extends { new (...args: any[]): any }>(
 }
 
 export function createPlugin(collector: ClassNameCollector) {
-    return postcss.plugin("ts-classnames/postcss", function(opts) {
+    return postcss.plugin("ts-classnames/postcss", _options => {
+        const options = _options as Partial<{
+            dest: string;
+        }>;
+
+        if (options.dest) {
+            collector.dest = options.dest;
+        }
+
         return function(root) {
             collector.process(root);
         };
@@ -30,5 +38,7 @@ export function createPlugin(collector: ClassNameCollector) {
 }
 
 export default createPlugin(
-    getSingleton("ts-classname-instance", ClassNameCollector, {}),
+    getSingleton("ts-classname-instance", ClassNameCollector, {
+        dest: "src/classnames.d.ts",
+    }),
 );

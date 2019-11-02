@@ -1,4 +1,7 @@
 import postcss from "postcss";
+import PathUtils from "path";
+import { sh } from "sh-thunk";
+import { promises as fs } from "fs";
 import { createPlugin } from "../src/postcss/plugin";
 import { ClassNameCollector } from "../src/postcss/class-name-collector";
 
@@ -130,4 +133,44 @@ test("multiple files", async () => {
     );
 
     expect(collector.getClassNames()).toEqual(["bar", "foo"]);
+});
+
+describe("files", () => {
+    let dir = "___noope";
+
+    beforeEach(async () => {
+        dir = await fs.mkdtemp(".ts-classnames-test");
+    });
+
+    afterEach(async () => {
+        await sh`rm -r ${dir}`();
+    });
+
+    test("can write the type file", async () => {
+        console.log("dir", dir);
+        const dest = PathUtils.join(dir, "types.d.ts");
+
+        const collector = new ClassNameCollector({
+            dest,
+        });
+
+        await run(
+            collector,
+            css`
+                .foo,
+                .bar,
+                .baz {
+                    color: red;
+                }
+            `,
+        );
+
+        await collector.waitForWrite();
+
+        const content = await fs.readFile(dest);
+
+        expect(content.toString()).toEqual(
+            `type ClassNames = "bar" | "baz" | "foo";`,
+        );
+    });
 });

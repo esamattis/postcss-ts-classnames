@@ -1,17 +1,34 @@
 import createSelectorParser from "postcss-selector-parser";
+import { promises as fs } from "fs";
 import { Rule, Root } from "postcss";
 import debounce from "lodash.debounce";
 
 export class ClassNameCollector {
     classNames: Map<string, undefined | Set<string>>;
+    dest?: string;
+
+    waiters = [] as VoidFunction[];
 
     constructor(options: { dest?: string }) {
+        this.dest = options.dest;
         this.classNames = new Map();
     }
 
-    debouncedWrite = debounce(() => {
-        console.log("write!!!!!!!!!!!!!!!!!!!!!!!!", this.getClassNames());
+    debouncedWrite = debounce(async () => {
+        if (!this.dest) {
+            return;
+        }
+
+        await fs.writeFile(this.dest, this.getTypeScriptType());
+        this.waiters.forEach(resolve => resolve());
+        this.waiters = [];
     }, 100);
+
+    async waitForWrite() {
+        return new Promise(resolve => {
+            this.waiters.push(resolve);
+        });
+    }
 
     addClassName(file: string, className: string) {
         let classNames = this.classNames.get(file);
@@ -35,6 +52,13 @@ export class ClassNameCollector {
         }
 
         return Array.from(allUniq).sort();
+    }
+
+    getTypeScriptType() {
+        const names = this.getClassNames()
+            .map(n => `"${n}"`)
+            .join(" | ");
+        return `type ClassNames = ${names};`;
     }
 
     process(root: Root) {
