@@ -1,6 +1,14 @@
-const _cn = require("classnames");
+const originalClassNames = require("classnames");
 
-type Variants<T extends string> = T | Record<T, boolean | undefined | null>;
+type ClassNameRecord<T extends string> = Record<T, boolean | undefined | null>;
+
+type Variants<T extends string> =
+    | T
+    | ClassNameRecord<T>
+    | (T | ClassNameRecord<T> | null | undefined | boolean)[]
+    | null
+    | undefined
+    | boolean;
 
 export interface ClassNamesFunction<T extends string> {
     (...args: Variants<T>[]): string;
@@ -8,6 +16,6 @@ export interface ClassNamesFunction<T extends string> {
 
 export function createClassNames<T extends string>() {
     return function classNames(...args: Variants<T>[]): string {
-        return _cn(...args);
+        return originalClassNames(...args);
     };
 }
