@@ -11,6 +11,10 @@
         "test": "npm run tsc && npm run jest",
         "prepublishOnly": "npm test && npm run build"
     },
+    "keywords": [
+        "postcss",
+        "postcss-plugin"
+    ],
     "files": [
         "dist"
     ],
