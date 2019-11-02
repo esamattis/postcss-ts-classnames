@@ -1,6 +1,6 @@
 # ts-classnames
 
 Re-exported version of the `classnames` module for the
-`postcss-ts-classnames` PostCSS plugin. [See it's readme.][readme].
+`postcss-ts-classnames` PostCSS plugin. [See it's readme][readme].
 
 [readme]: https://github.com/epeli/postcss-ts-classnames#ts-classnames
