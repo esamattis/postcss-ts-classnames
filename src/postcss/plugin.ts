@@ -1,44 +1,38 @@
 import postcss from "postcss";
-import { ClassNameCollector } from "./class-name-collector";
+import {
+    ClassNameCollector,
+    ClassNameCollectorOptions,
+} from "./class-name-collector";
 
-type ConstructorParameters<T> = T extends new (...args: infer U) => any
-    ? U
-    : never;
-
-function getSingleton<T extends { new (...args: any[]): any }>(
-    key: string,
-    klass: T,
-    options: ConstructorParameters<T>[0],
-): InstanceType<T> {
+export function getSingleton(): ClassNameCollector {
+    const key = "ts-classname-collector";
     const anyGlobal = global as any;
 
-    let instance: InstanceType<T> = anyGlobal[key];
+    let instance: ClassNameCollector = anyGlobal[key];
 
     if (!instance) {
-        instance = anyGlobal[key] = new klass(options);
+        instance = anyGlobal[key] = new ClassNameCollector({
+            dest: "src/classnames.d.ts",
+        });
     }
 
     return instance;
 }
 
 export function createPlugin(collector: ClassNameCollector) {
-    return postcss.plugin("ts-classnames/postcss", _options => {
-        const options = _options as Partial<{
-            dest: string;
-        }>;
+    return postcss.plugin("ts-classnames/postcss", _userOptions => {
+        const userOptions = _userOptions as
+            | Partial<ClassNameCollectorOptions>
+            | undefined;
 
-        if (options.dest) {
-            collector.dest = options.dest;
+        if (userOptions && userOptions.dest) {
+            collector.dest = userOptions.dest;
         }
 
-        return function(root) {
+        return root => {
             collector.process(root);
         };
     });
 }
 
-export default createPlugin(
-    getSingleton("ts-classname-instance", ClassNameCollector, {
-        dest: "src/classnames.d.ts",
-    }),
-);
+export default createPlugin(getSingleton());

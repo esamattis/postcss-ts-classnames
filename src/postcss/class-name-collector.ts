@@ -3,13 +3,17 @@ import { promises as fs } from "fs";
 import { Rule, Root } from "postcss";
 import debounce from "lodash.debounce";
 
+export interface ClassNameCollectorOptions {
+    dest?: string;
+}
+
 export class ClassNameCollector {
     classNames: Map<string, undefined | Set<string>>;
     dest?: string;
 
     waiters = [] as VoidFunction[];
 
-    constructor(options: { dest?: string }) {
+    constructor(options: ClassNameCollectorOptions) {
         this.dest = options.dest;
         this.classNames = new Map();
     }
