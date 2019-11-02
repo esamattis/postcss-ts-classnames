@@ -55,6 +55,23 @@ test(":hover", async () => {
     expect(collector.getClassNames()).toEqual(["foo"]);
 });
 
+test("media query nesting", async () => {
+    const collector = new ClassNameCollector({});
+
+    await run(
+        collector,
+        css`
+            @media (min-width: 640px) {
+                .foo {
+                    color: red;
+                }
+            }
+        `,
+    );
+
+    expect(collector.getClassNames()).toEqual(["foo"]);
+});
+
 test("single two classes", async () => {
     const collector = new ClassNameCollector({});
 
