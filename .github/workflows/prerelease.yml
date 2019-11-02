@@ -2,6 +2,10 @@ on:
     push:
         branches:
             - master
+        paths:
+            - src/*
+            - package.json
+
 
 jobs:
     prerelease:
