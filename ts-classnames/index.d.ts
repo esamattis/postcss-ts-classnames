@@ -1,11 +1,10 @@
-type ClassNameRecord<T extends string> = Partial<
-    Record<T, boolean | undefined | null>
->;
+type ClassNameRecord<K extends string> = {
+    [P in K]?: boolean;
+};
 
 type Variants<T extends string> =
     | T
     | ClassNameRecord<T>
-    | (T | ClassNameRecord<T> | null | undefined | boolean)[]
     | null
     | undefined
     | boolean;
