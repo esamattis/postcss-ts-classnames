@@ -1,5 +1,6 @@
-import { ClassNamesFunction } from "./classnames";
+import { ClassNamesFunction, createClassNames } from "./classnames";
 
+export { createClassNames };
 /**
  * Using user defined ClassNames type
  */
