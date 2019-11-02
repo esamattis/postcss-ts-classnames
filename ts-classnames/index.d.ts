@@ -1,5 +1,5 @@
 type ClassNameRecord<K extends string> = {
-    [P in K]?: boolean;
+    [P in K]?: boolean | null | undefined;
 };
 
 type Variants<T extends string> =
