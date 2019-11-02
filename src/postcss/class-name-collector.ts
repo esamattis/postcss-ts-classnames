@@ -20,13 +20,18 @@ export class ClassNameCollector {
 
     debouncedWrite = debounce(async () => {
         if (!this.dest) {
+            this.resolveWaiters();
             return;
         }
 
         await fs.writeFile(this.dest, this.getTypeScriptType());
+        this.resolveWaiters();
+    }, 100);
+
+    resolveWaiters() {
         this.waiters.forEach(resolve => resolve());
         this.waiters = [];
-    }, 100);
+    }
 
     async waitForWrite() {
         return new Promise(resolve => {
@@ -75,6 +80,9 @@ export class ClassNameCollector {
         if (!file) {
             return;
         }
+
+        // clear classes from previous file version
+        this.classNames.delete(file);
 
         const parser = createSelectorParser(selectors => {
             selectors.each(selector => {

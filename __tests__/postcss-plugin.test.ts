@@ -167,6 +167,43 @@ test("multiple files", async () => {
     expect(collector.getClassNames()).toEqual(["bar", "foo"]);
 });
 
+test("can remove classes", async () => {
+    const collector = new ClassNameCollector({});
+
+    const post = postcss([createPlugin(collector)]);
+
+    await post.process(
+        css`
+            .foo {
+                color: red;
+            }
+            .bar {
+                color: green;
+            }
+        `,
+        {
+            from: "foo-file.css",
+        },
+    );
+
+    expect(collector.getClassNames()).toEqual(["bar", "foo"]);
+
+    await collector.waitForWrite();
+
+    await post.process(
+        css`
+            .foo {
+                color: red;
+            }
+        `,
+        {
+            from: "foo-file.css",
+        },
+    );
+
+    expect(collector.getClassNames()).toEqual(["foo"]);
+});
+
 describe("files", () => {
     let dir = "___noope";
 
