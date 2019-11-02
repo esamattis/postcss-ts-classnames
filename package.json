@@ -4,9 +4,15 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "tsc --project tsconfig.build.json",
+        "jest": "jest",
+        "tsc": "tsc",
+        "build": "rm -rf dist && tsc --project tsconfig.build.json",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "files": [
+        "dist",
+        "postcss.js"
+    ],
     "author": "",
     "license": "ISC",
     "devDependencies": {
