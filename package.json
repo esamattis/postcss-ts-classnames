@@ -21,6 +21,7 @@
         "postcss-plugin"
     ],
     "files": [
+        "index.js",
         "dist"
     ],
     "author": "Esa-Matti Suuronen",
