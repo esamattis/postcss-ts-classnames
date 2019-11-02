@@ -19,19 +19,13 @@ export class ClassNameCollector {
     }
 
     debouncedWrite = debounce(async () => {
-        if (!this.dest) {
-            this.resolveWaiters();
-            return;
+        if (this.dest) {
+            await fs.writeFile(this.dest, this.getTypeScriptType());
         }
 
-        await fs.writeFile(this.dest, this.getTypeScriptType());
-        this.resolveWaiters();
-    }, 100);
-
-    resolveWaiters() {
         this.waiters.forEach(resolve => resolve());
         this.waiters = [];
-    }
+    }, 100);
 
     async waitForWrite() {
         return new Promise(resolve => {
