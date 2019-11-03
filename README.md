@@ -36,7 +36,7 @@ function cn(...args: ClassNames[]) {
 
 and have your editor autocomplete and validate the class names:
 
-> TODO add gifs
+![vscode demo](.demos/autocomplete.gif?raw=true "VSCode demo")
 
 ## ts-classnames
 
