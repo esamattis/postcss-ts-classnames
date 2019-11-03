@@ -38,23 +38,6 @@ and have your editor autocomplete and validate the class names:
 
 ![vscode demo](.demos/autocomplete.gif?raw=true "VSCode demo")
 
-## ts-classnames
-
-There's also a `ts-classnames` module which is re-exported version of the
-original [classnames][] which uses the generated `ClassNames` type to
-validate the class names
-
-[classnames]: https://www.npmjs.com/package/classnames
-
-Install
-
-    npm install ts-classname
-
-Import
-
-```ts
-import { cn } from "ts-classnames";
-```
 
 ## Setup
 
@@ -80,4 +63,23 @@ module.exports = {
         }),
     ],
 };
+```
+
+
+## ts-classnames
+
+There's also a `ts-classnames` module which is re-exported version of the
+original [classnames][] which uses the generated `ClassNames` type to
+validate the class names
+
+[classnames]: https://www.npmjs.com/package/classnames
+
+Install
+
+    npm install ts-classnames
+
+Import
+
+```ts
+import { cn } from "ts-classnames";
 ```
