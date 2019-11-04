@@ -20,7 +20,7 @@ export function getSingleton(): ClassNameCollector {
 }
 
 export function createPlugin(collector: ClassNameCollector) {
-    return postcss.plugin("ts-classnames/postcss", _userOptions => {
+    return postcss.plugin("postcss-ts-classnames", _userOptions => {
         const userOptions = _userOptions as
             | Partial<ClassNameCollectorOptions>
             | undefined;
