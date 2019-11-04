@@ -89,7 +89,7 @@ TypeScript types from JSDoc comments so you can do
 
 ```js
 /**
- * @param {ClassNames} args
+ * @param {ClassNames[]} args
  */
 function cn(...args) {
     return args.join(" ");
