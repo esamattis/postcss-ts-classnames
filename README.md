@@ -38,7 +38,6 @@ and have your editor autocomplete and validate the class names:
 
 ![vscode demo](.demos/autocomplete.gif?raw=true "VSCode demo")
 
-
 ## Setup
 
 Install the plugin
@@ -65,7 +64,6 @@ module.exports = {
 };
 ```
 
-
 ## ts-classnames
 
 There's also a `ts-classnames` module which is re-exported version of the
@@ -83,3 +81,22 @@ Import
 ```ts
 import { cn } from "ts-classnames";
 ```
+
+## Vanilla JavaScript
+
+If you don't use TypeScript you can still leverage this as VSCode can pick up
+TypeScript types from JSDoc comments so you can do
+
+```js
+/**
+ * @param {ClassNames} args
+ */
+function cn(...args) {
+    return args.join(" ");
+}
+```
+
+This will give the autocomplete but if you want the class names checking you
+can add [`// @ts-check`][js] to the top of the file.
+
+[js]: https://github.com/microsoft/TypeScript/wiki/Type-Checking-JavaScript-Files
