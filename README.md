@@ -99,4 +99,6 @@ function cn(...args) {
 This will give the autocomplete but if you want the class names checking you
 can add [`// @ts-check`][js] to the top of the file.
 
+The `ts-classnames` will work with Vanilla JS too.
+
 [js]: https://github.com/microsoft/TypeScript/wiki/Type-Checking-JavaScript-Files
