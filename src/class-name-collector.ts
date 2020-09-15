@@ -5,16 +5,19 @@ import debounce from "lodash.debounce";
 
 export interface ClassNameCollectorOptions {
     dest?: string;
+    isModule?: boolean;
 }
 
 export class ClassNameCollector {
     classNames: Map<string, undefined | Set<string>>;
     dest?: string;
+    isModule?: boolean;
 
     waiters = [] as VoidFunction[];
 
     constructor(options: ClassNameCollectorOptions) {
         this.dest = options.dest;
+        this.isModule = options.isModule;
         this.classNames = new Map();
     }
 
@@ -61,7 +64,7 @@ export class ClassNameCollector {
         const names = this.getClassNames()
             .map(n => `"${n}"`)
             .join(" | ");
-        return `type ClassNames = ${names};`;
+        return `${this.isModule ? 'export ' : ''}type ClassNames = ${names};`;
     }
 
     process(root: Root) {

@@ -216,7 +216,6 @@ describe("files", () => {
     });
 
     test("can write the type file", async () => {
-        console.log("dir", dir);
         const dest = PathUtils.join(dir, "types.d.ts");
 
         const collector = new ClassNameCollector({
@@ -242,4 +241,25 @@ describe("files", () => {
             `type ClassNames = "bar" | "baz" | "foo";`,
         );
     });
+
+    test("can export the type file as a module", async () => {
+        const dest = PathUtils.join(dir, "types.ts");
+        const collector = new ClassNameCollector({
+            dest,
+            isModule: true,
+        });
+
+        await run(
+            collector,
+            css`.foo { color: blue }`,
+        );
+        await collector.waitForWrite();
+
+        const content = await fs.readFile(dest);
+
+        expect(content.toString()).toEqual(
+            `export type ClassNames = "foo";`,
+        );
+    });
+
 });

@@ -28,6 +28,9 @@ export function createPlugin(collector: ClassNameCollector) {
         if (userOptions && userOptions.dest) {
             collector.dest = userOptions.dest;
         }
+        if (userOptions && userOptions.isModule) {
+            collector.isModule = userOptions.isModule;
+        }
 
         return root => {
             collector.process(root);

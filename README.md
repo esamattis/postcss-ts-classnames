@@ -55,6 +55,8 @@ module.exports = {
 
         require("postcss-ts-classnames")({
             dest: "src/classnames.d.ts",
+            // Set isModule if you want to import ClassNames from another file
+            isModule: true,
         }),
 
         require("@fullhuman/postcss-purgecss")({
