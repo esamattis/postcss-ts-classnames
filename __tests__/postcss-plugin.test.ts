@@ -237,9 +237,14 @@ describe("files", () => {
 
         const content = await fs.readFile(dest);
 
-        expect(content.toString()).toEqual(
-            `type ClassNames = "bar" | "baz" | "foo";`,
-        );
+        expect(content.toString()).toMatchInlineSnapshot(`
+            "// This file is auto-generated with postcss-ts-classnames.
+
+            type ClassNames =
+              | \\"bar\\"
+              | \\"baz\\"
+              | \\"foo\\";"
+        `);
     });
 
     test("can export the type file as a module", async () => {
@@ -257,9 +262,11 @@ describe("files", () => {
 
         const content = await fs.readFile(dest);
 
-        expect(content.toString()).toEqual(
-            `export type ClassNames = "foo";`,
-        );
-    });
+        expect(content.toString()).toMatchInlineSnapshot(`
+            "// This file is auto-generated with postcss-ts-classnames.
 
+            export type ClassNames =
+              | \\"foo\\";"
+        `);
+    });
 });
