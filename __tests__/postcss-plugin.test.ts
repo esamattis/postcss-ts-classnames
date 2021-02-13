@@ -256,7 +256,11 @@ describe("files", () => {
 
         await run(
             collector,
-            css`.foo { color: blue }`,
+            css`
+                .foo {
+                    color: blue;
+                }
+            `,
         );
         await collector.waitForWrite();
 
