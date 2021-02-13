@@ -23,7 +23,7 @@ export class ClassNameCollector {
 
     debouncedWrite = debounce(async () => {
         if (this.dest) {
-            await fs.writeFile(this.dest, this.getTypeScriptType());
+            await fs.writeFile(this.dest, this.getTypeScriptFileContent());
         }
 
         this.waiters.forEach(resolve => resolve());
@@ -60,11 +60,14 @@ export class ClassNameCollector {
         return Array.from(allUniq).sort();
     }
 
-    getTypeScriptType() {
+    getTypeScriptFileContent() {
+        const comment = '// This file is auto-generated with postcss-ts-classnames.';
+        const prefix = '  | ';
         const names = this.getClassNames()
             .map(n => `"${n}"`)
-            .join(" | ");
-        return `${this.isModule ? 'export ' : ''}type ClassNames = ${names};`;
+            .join(`\n${prefix}`);
+
+        return `${comment}\n\n${this.isModule ? 'export ' : ''}type ClassNames =\n${prefix}${names};`;
     }
 
     process(root: Root) {
