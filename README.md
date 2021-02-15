@@ -6,7 +6,7 @@
 
 It generates a global `ClassNames` type which is a union of all classes
 used in your project whether written by you or from a framework such as
-Bootstrap or Tailwind (can get slow...).
+Bootstrap or Tailwind (which can get [bit too slow](https://github.com/esamattis/postcss-ts-classnames/issues/5)).
 
 Ex. for css
 
