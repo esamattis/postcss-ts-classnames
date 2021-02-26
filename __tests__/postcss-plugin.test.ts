@@ -297,9 +297,9 @@ describe("files", () => {
             "// This file is auto-generated with postcss-ts-classnames.
 
             export type ClassNames =
-              | \\"foo\\";"
+              | \\"foo\\";
 
-            export default ClassNames;
+            export default ClassNames;"
         `);
     });
 
