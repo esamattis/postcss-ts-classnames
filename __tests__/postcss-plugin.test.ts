@@ -273,4 +273,34 @@ describe("files", () => {
               | \\"foo\\";"
         `);
     });
+    test("can export the type file as a module and as default", async () => {
+        const dest = PathUtils.join(dir, "types.ts");
+        const collector = new ClassNameCollector({
+            dest,
+            isModule: true,
+            exportAsDefault: true,
+        });
+
+        await run(
+            collector,
+            css`
+                .foo {
+                    color: blue;
+                }
+            `,
+        );
+        await collector.waitForWrite();
+
+        const content = await fs.readFile(dest);
+
+        expect(content.toString()).toMatchInlineSnapshot(`
+            "// This file is auto-generated with postcss-ts-classnames.
+
+            export type ClassNames =
+              | \\"foo\\";"
+
+            export default ClassNames;
+        `);
+    });
+
 });
